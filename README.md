@@ -4,8 +4,13 @@ Maya Python Samples
 Introduction
 -------------
 
-Just starting to learn Maya Python programming
+Just started with Maya Python programming
 
+Plug-ins
+--------
+* UnitsSwitcher
 
 Samples
 -------
+* Layouts
+* RenameDialog

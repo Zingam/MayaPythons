@@ -1,23 +1,3 @@
-#
-# main - Program entry point
-#        
-        
-if __name__ == "__main__":
-    
-    # Work around PySide bug when opening too many windows
-    try:
-        ui.close()
-    except:
-        pass
-    
-    ui = PluginUi()
-    
-    ui.show()
-    
-'''
-    
-'''    
-# System
 # System
 import sys
 import os

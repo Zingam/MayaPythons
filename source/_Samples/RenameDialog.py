@@ -114,3 +114,17 @@ if __name__ == "__main__":
     dialog = RenamingDialog()
     
     dialog.show()
+
+'''      
+if __name__ == "__main__":
+    
+    # Work around PySide bug when opening too many windows
+    try:
+        ui.close()
+    except:
+        pass
+    
+    ui = PluginUi()
+    
+    ui.show()
+'''
