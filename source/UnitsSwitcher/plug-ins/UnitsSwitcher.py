@@ -1,7 +1,7 @@
 ##############################################################################
 # UnitsSwitcher Plug-in
 #     Software:    Maya 2014
-#     Version:     0.0.0.3
+#     Version:     0.0.0.5
 #     Description: Commands to quickly switch the UI units
 #     Note:        Currently supports metric linear units
 ##############################################################################
@@ -34,13 +34,13 @@ reload(UsCommands)
 
 # Global constants
 cVendorName = "Roccoor Multimedia"
-cPluginVersion = "0.0.0.4"
+cPluginVersion = "0.0.0.5"
 
 # Global variables
 kPluginCommandName_switchUnits = "switchUnits"
 kPluginCommandName_switchUnitsToMeters = "switchUnitsToMeters"
 kPluginCommandName_switchUnitsToCentimeters = "switchUnitsToCentimeters"
-kPluginCommandName_switchUnitsToMilimeters = "switchUnitsToMilimeters"
+kPluginCommandName_switchUnitsToMillimeters = "switchUnitsToMillimeters"
 kPluginCommandName_switchUnitsHideHUD = "switchUnitsHideHUD"
 
 ##############################################################################
@@ -65,10 +65,10 @@ def commandCreator_switchUnitsToCentimeters():
     return OpenMayaMPx.asMPxPtr(UsCommands.SwitchUnitsToCentimeters())
     
     
-def commandCreator_switchUnitsToMilimeters():
+def commandCreator_switchUnitsToMillimeters():
     """Create an instance of the command"""
 
-    return OpenMayaMPx.asMPxPtr(UsCommands.SwitchUnitsToMilimeters())
+    return OpenMayaMPx.asMPxPtr(UsCommands.SwitchUnitsToMillimeters())
     
     
 def commandCreator_switchUnitsHideHUD():
@@ -89,13 +89,13 @@ def initializePlugin(mObject):
         mPlugin.registerCommand(kPluginCommandName_switchUnits, commandCreator_switchUnits)
         mPlugin.registerCommand(kPluginCommandName_switchUnitsToMeters, commandCreator_switchUnitsToMeters)
         mPlugin.registerCommand(kPluginCommandName_switchUnitsToCentimeters, commandCreator_switchUnitsToCentimeters)
-        mPlugin.registerCommand(kPluginCommandName_switchUnitsToMilimeters, commandCreator_switchUnitsToMilimeters)
+        mPlugin.registerCommand(kPluginCommandName_switchUnitsToMillimeters, commandCreator_switchUnitsToMillimeters)
         mPlugin.registerCommand(kPluginCommandName_switchUnitsHideHUD, commandCreator_switchUnitsHideHUD)
     except:
         sys.stderr.write("Failed to register command: " + kPluginCommandName_switchUnits)
         sys.stderr.write("Failed to register command: " + kPluginCommandName_switchUnitsToMeters)
         sys.stderr.write("Failed to register command: " + kPluginCommandName_switchUnitsToCentimeters)
-        sys.stderr.write("Failed to register command: " + kPluginCommandName_switchUnitsToMilimeters)
+        sys.stderr.write("Failed to register command: " + kPluginCommandName_switchUnitsToMillimeters)
         sys.stderr.write("Failed to register command: " + kPluginCommandName_switchUnitsHideHUD)
         
 def uninitializePlugin(mObject):
@@ -107,11 +107,11 @@ def uninitializePlugin(mObject):
         mPlugin.deregisterCommand(kPluginCommandName_switchUnits)
         mPlugin.deregisterCommand(kPluginCommandName_switchUnitsToMeters)
         mPlugin.deregisterCommand(kPluginCommandName_switchUnitsToCentimeters)
-        mPlugin.deregisterCommand(kPluginCommandName_switchUnitsToMilimeters)
+        mPlugin.deregisterCommand(kPluginCommandName_switchUnitsToMillimeters)
         mPlugin.deregisterCommand(kPluginCommandName_switchUnitsHideHUD)
     except:
         sys.stderr.write("Failed to unregister command: " + kPluginCommandName_switchUnits)
         sys.stderr.write("Failed to unregister command: " + kPluginCommandName_switchUnitsToMeters)
         sys.stderr.write("Failed to unregister command: " + kPluginCommandName_switchUnitsToCentimeters)
-        sys.stderr.write("Failed to unregister command: " + kPluginCommandName_switchUnitsToMilimeters)
+        sys.stderr.write("Failed to unregister command: " + kPluginCommandName_switchUnitsToMillimeters)
         sys.stderr.write("Failed to unregister command: " + kPluginCommandName_switchUnitsHideHUD)

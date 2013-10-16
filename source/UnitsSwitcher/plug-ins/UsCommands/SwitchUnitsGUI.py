@@ -3,11 +3,24 @@ from PySide import QtGui
 
 from shiboken import wrapInstance
 
+import maya.OpenMaya as OpenMaya
 import maya.OpenMayaUI as OpenMayaUI
 
 # Import helper functions
 import SwitchUnitsFunctions
-reload(SwitchUnitsFunctions) 
+reload(SwitchUnitsFunctions)
+
+
+##############################################################################
+# Module definitions - constants
+##############################################################################
+
+comboBoxItems = {
+    'Meters': "Meters",
+    'Centimeters': "Centimeters",
+    'Millimeters': "Millimeters"
+}
+
 
 ##############################################################################
 # Helper functions
@@ -30,6 +43,7 @@ class SwitchUnitsGUI(QtGui.QDialog):
         super(SwitchUnitsGUI, self).__init__(parent)
         
         self.createUsDialog()
+        self.setCurrentItemFromMaya()
     
     ##########################################################################
     # Class - GUI creation functions
@@ -59,9 +73,9 @@ class SwitchUnitsGUI(QtGui.QDialog):
         
         # ComboBox
         self.comboBox_SelectUnits = QtGui.QComboBox()  
-        self.comboBox_SelectUnits.addItem("Meters")
-        self.comboBox_SelectUnits.addItem("Centimeters")
-        self.comboBox_SelectUnits.addItem("Milimeters")
+        self.comboBox_SelectUnits.addItem(comboBoxItems['Meters'])
+        self.comboBox_SelectUnits.addItem(comboBoxItems['Centimeters'])
+        self.comboBox_SelectUnits.addItem(comboBoxItems['Millimeters'])
         
         # Push buttons
         self.pushButton_ApplyAndClose = QtGui.QPushButton("Apply and Close")
@@ -179,5 +193,21 @@ class SwitchUnitsGUI(QtGui.QDialog):
             SwitchUnitsFunctions.switchUnitsToMeters()
         elif "Centimeters" == currentText:
             SwitchUnitsFunctions.switchUnitsToCentimeters()
-        elif "Milimeters" == currentText:
-            SwitchUnitsFunctions.switchUnitsToMilimeters()
+        elif "Millimeters" == currentText:
+            SwitchUnitsFunctions.switchUnitsToMillimeters()
+    
+    
+    def setCurrentItemFromMaya(self):
+        """Sets the current item of the combo box to the current units)"""
+        
+        index = 0
+        currentUnits = SwitchUnitsFunctions.getCurrentUnits()
+        
+        if OpenMaya.MDistance.kMeters == currentUnits:
+            index = self.comboBox_SelectUnits.findText(comboBoxItems['Meters'])           
+        elif OpenMaya.MDistance.kCentimeters == currentUnits:
+            index = self.comboBox_SelectUnits.findText(comboBoxItems['Centimeters'])
+        elif OpenMaya.MDistance.kMillimeters == currentUnits:
+            index = self.comboBox_SelectUnits.findText(comboBoxItems['Millimeters'])
+    
+        self.comboBox_SelectUnits.setCurrentIndex(index)

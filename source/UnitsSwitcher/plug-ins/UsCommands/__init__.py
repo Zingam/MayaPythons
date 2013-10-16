@@ -1,19 +1,19 @@
-__all__ = ["SwitchUnits", "SwitchUnitsToMeters", "SwitchUnitsToCentimeters", "SwitchUnitsToMilimeters", "SwitchUnitsHideHUD"]
+__all__ = ["SwitchUnits", "SwitchUnitsToMeters", "SwitchUnitsToCentimeters", "SwitchUnitsToMillimeters", "SwitchUnitsHideHUD"]
 
 import SwitchUnits
 import SwitchUnitsToMeters
 import SwitchUnitsToCentimeters
-import SwitchUnitsToMilimeters
+import SwitchUnitsToMillimeters
 import SwitchUnitsHideHUD
 
 reload(SwitchUnits)
 reload(SwitchUnitsToMeters)
 reload(SwitchUnitsToCentimeters)
-reload(SwitchUnitsToMilimeters)
+reload(SwitchUnitsToMillimeters)
 reload(SwitchUnitsHideHUD)
 
 from UsCommands.SwitchUnits import SwitchUnits
 from UsCommands.SwitchUnitsToMeters import SwitchUnitsToMeters
 from UsCommands.SwitchUnitsToCentimeters import SwitchUnitsToCentimeters
-from UsCommands.SwitchUnitsToMilimeters import SwitchUnitsToMilimeters
+from UsCommands.SwitchUnitsToMillimeters import SwitchUnitsToMillimeters
 from UsCommands.SwitchUnitsHideHUD import SwitchUnitsHideHUD

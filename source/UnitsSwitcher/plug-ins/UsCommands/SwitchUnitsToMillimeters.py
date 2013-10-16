@@ -10,7 +10,7 @@ reload(SwitchUnitsFunctions)
 # Class Definitions
 ##############################################################################
 
-class SwitchUnitsToMilimeters(OpenMayaMPx.MPxCommand):
+class SwitchUnitsToMillimeters(OpenMayaMPx.MPxCommand):
 
     def __init__(self):
         """Constructor"""
@@ -20,4 +20,4 @@ class SwitchUnitsToMilimeters(OpenMayaMPx.MPxCommand):
     def doIt(self, args):
         """Command execution"""
         
-        SwitchUnitsFunctions.switchUnitsToMilimeters()
+        SwitchUnitsFunctions.switchUnitsToMillimeters()
