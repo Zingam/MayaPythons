@@ -10,7 +10,6 @@
 #              http://download.autodesk.com/global/docs/maya2014/en_us/PyMel/generated/functions/pymel.core.windows/pymel.core.windows.shelfButton.html#pymel.core.windows.shelfButton
 ##############################################################################
 
-
 # Code from: http://forums.cgsociety.org/showthread.php?t=1091198
 def createMyShelf():
 	shelfName = 'My_Shelf'

@@ -4,6 +4,15 @@
 # Description: Defines all global constants in one place.
 ##############################################################################
 
+headsUpDisplay = {
+    'Name'          : "HUDCurrentUnits",
+    'section'       : 2,
+    'block'         : 0,
+    'blockSize'     : "medium",
+    'label'         : "Linear units:",
+    'labelFontSize' : "small",
+    'linearUnits'   : ""
+}
 
 cPewPewDead = "Pew! Pew! You are dead!"
 

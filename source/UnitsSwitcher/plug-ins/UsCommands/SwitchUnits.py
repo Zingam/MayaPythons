@@ -5,7 +5,6 @@
 #              module "SwitchUnitsGUI.py"
 ##############################################################################
 
-
 # Qt - PySide imports
 from shiboken import wrapInstance
 from PySide import QtGui

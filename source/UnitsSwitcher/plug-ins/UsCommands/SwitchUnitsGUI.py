@@ -5,7 +5,6 @@
 #              defined in "SwitchUnits.py"
 ##############################################################################
 
-
 # PySide imports
 from PySide import QtCore
 from PySide import QtGui

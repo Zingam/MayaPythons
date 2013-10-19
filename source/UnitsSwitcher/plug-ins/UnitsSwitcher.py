@@ -6,7 +6,6 @@
 #     Note:        Currently supports metric linear units
 ##############################################################################
 
-
 # Python imports
 import sys
 
@@ -19,6 +18,10 @@ import maya.OpenMayaMPx as OpenMayaMPx
 import UsCommands
 reload(UsCommands)
 
+
+##############################################################################
+# Module definitions - constants
+##############################################################################
 
 # Global constants
 cVendorName = "Roccoor Multimedia"

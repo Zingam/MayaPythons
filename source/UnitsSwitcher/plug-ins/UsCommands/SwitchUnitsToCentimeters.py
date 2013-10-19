@@ -4,7 +4,6 @@
 # Description: Defines the command "switchUnitsToCentimeters".
 ##############################################################################
 
-
 # Main Maya imports
 import maya.OpenMaya as OpenMaya
 import maya.OpenMayaMPx as OpenMayaMPx

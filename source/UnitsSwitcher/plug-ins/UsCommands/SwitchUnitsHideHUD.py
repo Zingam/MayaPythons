@@ -4,7 +4,6 @@
 # Description: Defines the command "switchUnitsHideHUD".
 ##############################################################################
 
-
 # Main Maya imports
 import maya.OpenMayaMPx as OpenMayaMPx
 import maya.OpenMayaUI as OpenMayaUI
