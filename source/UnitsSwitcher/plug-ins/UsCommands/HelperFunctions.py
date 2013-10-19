@@ -38,7 +38,7 @@ def printFrame(message):
 def pPP():
     """Prints the "Pew! Pew! You are dead!" message."""
     
-    printFrame(Constants.cPewPewDead)
+    printFrame(Constants.PewPewDead)
 
 
 ##############################################################################
@@ -48,30 +48,29 @@ def pPP():
 def destroyHeadsUpDisplay():
     """Removes the HUD object of the plug-in from Maya HUD."""
 
-    doesHUDExist = cmds.headsUpDisplay(Constants.headsUpDisplay['Name'], exists=True)
+    doesHUDExist = cmds.headsUpDisplay(Constants.HeadsUpDisplay['Name'], exists=True)
     
     if doesHUDExist:
-        cmds.headsUpDisplay(Constants.headsUpDisplay['Name'], rem=True)
+        cmds.headsUpDisplay(Constants.HeadsUpDisplay['Name'], rem=True)
 
         
 def prepareLabelText():
 
-    return Constants.headsUpDisplay['linearUnits']
+    return Constants.HeadsUpDisplay['linearUnits']
 
     
 def setHeadsUpDisplay(currentUnits):
     """Displays current units on Maya HUD."""
     
-    Constants.headsUpDisplay['linearUnits'] = currentUnits
-    pPP()
+    Constants.HeadsUpDisplay['linearUnits'] = currentUnits
     
     destroyHeadsUpDisplay()  # Check and destroy if a HUD object exists    
-    cmds.headsUpDisplay(Constants.headsUpDisplay['Name'],
-                        section=Constants.headsUpDisplay['section'],
-                        block=Constants.headsUpDisplay['block'],
-                        blockSize=Constants.headsUpDisplay['blockSize'],
-                        label=Constants.headsUpDisplay['label'],
-                        labelFontSize=Constants.headsUpDisplay['labelFontSize'],
+    cmds.headsUpDisplay(Constants.HeadsUpDisplay['Name'],
+                        section=Constants.HeadsUpDisplay['section'],
+                        block=Constants.HeadsUpDisplay['block'],
+                        blockSize=Constants.HeadsUpDisplay['blockSize'],
+                        label=Constants.HeadsUpDisplay['label'],
+                        labelFontSize=Constants.HeadsUpDisplay['labelFontSize'],
                         command=prepareLabelText, # Every command needs
                                                   # a trigger flag (tr. flag)
                         event='SelectionChanged') # <- The (random) tr. flag
@@ -101,11 +100,11 @@ def setLinearUnits(newUnits):
     newUnits = OpenMaya.MDistance.uiUnit()
     
     if OpenMaya.MDistance.kMeters == newUnits:
-        currentUnits = "Meters"
+        currentUnits = Constants.ComboBoxItems['Meters']
     elif OpenMaya.MDistance.kCentimeters == newUnits:
-        currentUnits = "Centimeters"
+        currentUnits = Constants.ComboBoxItems['Centimeters']
     elif OpenMaya.MDistance.kMillimeters == newUnits:
-        currentUnits = "Millimeters"
+        currentUnits = Constants.ComboBoxItems['Millimeters']
         
     setHeadsUpDisplay(currentUnits)
 

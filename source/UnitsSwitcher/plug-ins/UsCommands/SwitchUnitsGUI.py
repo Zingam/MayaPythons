@@ -19,17 +19,8 @@ import maya.OpenMayaUI as OpenMayaUI
 import HelperFunctions
 reload(HelperFunctions)
 
-
-##############################################################################
-# Module definitions - constants
-##############################################################################
-
-# TODO: Change this to units constants dictionary and use it everywhere
-comboBoxItems = {
-    'Meters': "Meters",
-    'Centimeters': "Centimeters",
-    'Millimeters': "Millimeters"
-}
+import Constants
+reload(Constants)
 
 
 ##############################################################################
@@ -63,7 +54,7 @@ class SwitchUnitsGUI(QtGui.QDialog):
     def createUsDialog(self):
     
         self.setWindowTitle("Units Switcher")
-        #self.setWindowFlags(QtCore.Qt.Tool)
+        #self.setWindowFlags(QtCore.Qt.Tool)             # Use this on Mac OSX
         self.setWindowFlags(QtCore.Qt.WindowModal)
         self.setAttribute(QtCore.Qt.WA_DeleteOnClose)
         
@@ -75,23 +66,23 @@ class SwitchUnitsGUI(QtGui.QDialog):
     def createUsDialogControls(self):
 
         # Dialog label
-        self.label = QtGui.QLabel("<b>&nbsp;&nbsp;Working Units</b>")      
-        self.label.setMargin(3)
-        self.label.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Raised)
+        self.label_Dialog = QtGui.QLabel(Constants.Label_DialogText)      
+        self.label_Dialog.setMargin(3)
+        self.label_Dialog.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Raised)
         
         # ComboBox label
-        self.label_SelectUnits = QtGui.QLabel("Linear:")
+        self.label_SelectUnits = QtGui.QLabel(Constants.Label_SelectUnitsText)
         
         # ComboBox
         self.comboBox_SelectUnits = QtGui.QComboBox()  
-        self.comboBox_SelectUnits.addItem(comboBoxItems['Meters'])
-        self.comboBox_SelectUnits.addItem(comboBoxItems['Centimeters'])
-        self.comboBox_SelectUnits.addItem(comboBoxItems['Millimeters'])
+        self.comboBox_SelectUnits.addItem(Constants.ComboBoxItems['Meters'])
+        self.comboBox_SelectUnits.addItem(Constants.ComboBoxItems['Centimeters'])
+        self.comboBox_SelectUnits.addItem(Constants.ComboBoxItems['Millimeters'])
         
         # Push buttons
-        self.pushButton_ApplyAndClose = QtGui.QPushButton("Apply and Close")
-        self.pushButton_Apply = QtGui.QPushButton("Apply")
-        self.pushButton_Close = QtGui.QPushButton("Close")
+        self.pushButton_ApplyAndClose = QtGui.QPushButton(Constants.PushButton_ApplyAndCloseText)
+        self.pushButton_Apply = QtGui.QPushButton(Constants.PushButton_ApplyText)
+        self.pushButton_Close = QtGui.QPushButton(Constants.PushButton_CloseText)
     
     
     def createUsDialogLayout(self):
@@ -118,7 +109,7 @@ class SwitchUnitsGUI(QtGui.QDialog):
         layout_frame_Outher.setSpacing(0)
         
         # Add the dialog label
-        layout_frame_Outher.addWidget(self.label)
+        layout_frame_Outher.addWidget(self.label_Dialog)
         
         # BEGIN - Inner dialog frame
         self.frame_Inner = QtGui.QFrame()
@@ -201,11 +192,11 @@ class SwitchUnitsGUI(QtGui.QDialog):
         currentIndex = self.comboBox_SelectUnits.currentIndex()
         currentText = self.comboBox_SelectUnits.currentText()
         
-        if "Meters" == currentText:
+        if Constants.ComboBoxItems['Meters'] == currentText:
             HelperFunctions.setLinearUnits(OpenMaya.MDistance.kMeters)
-        elif "Centimeters" == currentText:
+        elif Constants.ComboBoxItems['Centimeters'] == currentText:
             HelperFunctions.setLinearUnits(OpenMaya.MDistance.kCentimeters)
-        elif "Millimeters" == currentText:
+        elif Constants.ComboBoxItems['Millimeters'] == currentText:
             HelperFunctions.setLinearUnits(OpenMaya.MDistance.kMillimeters)
     
     
@@ -216,10 +207,10 @@ class SwitchUnitsGUI(QtGui.QDialog):
         index = 0
         
         if OpenMaya.MDistance.kMeters == currentUnits:
-            index = self.comboBox_SelectUnits.findText(comboBoxItems['Meters'])           
+            index = self.comboBox_SelectUnits.findText(Constants.ComboBoxItems['Meters'])           
         elif OpenMaya.MDistance.kCentimeters == currentUnits:
-            index = self.comboBox_SelectUnits.findText(comboBoxItems['Centimeters'])
+            index = self.comboBox_SelectUnits.findText(Constants.ComboBoxItems['Centimeters'])
         elif OpenMaya.MDistance.kMillimeters == currentUnits:
-            index = self.comboBox_SelectUnits.findText(comboBoxItems['Millimeters'])
+            index = self.comboBox_SelectUnits.findText(Constants.ComboBoxItems['Millimeters'])
     
         self.comboBox_SelectUnits.setCurrentIndex(index)

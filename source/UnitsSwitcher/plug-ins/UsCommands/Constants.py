@@ -4,7 +4,7 @@
 # Description: Defines all global constants in one place.
 ##############################################################################
 
-headsUpDisplay = {
+HeadsUpDisplay = {
     'Name'          : "HUDCurrentUnits",
     'section'       : 2,
     'block'         : 0,
@@ -14,7 +14,20 @@ headsUpDisplay = {
     'linearUnits'   : ""
 }
 
-cPewPewDead = "Pew! Pew! You are dead!"
+ComboBoxItems = {
+    'Meters'     : "Meters",
+    'Centimeters': "Centimeters",
+    'Millimeters': "Millimeters"
+}
+
+Label_DialogText       = "<b>&nbsp;&nbsp;Working Units</b>"
+Label_SelectUnitsText = "Linear"
+
+PushButton_ApplyAndCloseText = "Apply and Close"
+PushButton_ApplyText         = "Apply"
+PushButton_CloseText         = "Close"
+
+PewPewDead = "Pew! Pew! You are dead!"
 
 
 ##################################################################################################

@@ -13,6 +13,9 @@ import maya.OpenMayaUI as OpenMayaUI
 import HelperFunctions
 reload(HelperFunctions)
 
+import Constants
+reload(Constants)
+
 
 ##############################################################################
 # Class Definitions
@@ -32,10 +35,10 @@ class SwitchUnitsShowHUD(OpenMayaMPx.MPxCommand):
         currentUnits = OpenMaya.MDistance.uiUnit()
     
         if OpenMaya.MDistance.kMeters == currentUnits:
-            currentUnits = "Meters"
+            currentUnits = Constants.ComboBoxItems['Meters']
         elif OpenMaya.MDistance.kCentimeters == currentUnits:
-            currentUnits = "Centimeters"
+            currentUnits = Constants.ComboBoxItems['Centimeters']
         elif OpenMaya.MDistance.kMillimeters == currentUnits:
-            currentUnits = "Millimeters"
+            currentUnits = Constants.ComboBoxItems['Millimeters']
         
         HelperFunctions.setHeadsUpDisplay(currentUnits)
