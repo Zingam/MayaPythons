@@ -1,10 +1,11 @@
 ##############################################################################
-# Module:      SwitchUnitsHideHUD
+# Module:      SwitchUnitsShowHUD
 #
-# Description: Defines the command "switchUnitsHideHUD".
+# Description: Defines the command "switchUnitsShowHUD".
 ##############################################################################
 
 # Main Maya imports
+import maya.OpenMaya as OpenMaya
 import maya.OpenMayaMPx as OpenMayaMPx
 import maya.OpenMayaUI as OpenMayaUI
 
@@ -16,7 +17,7 @@ reload(HelperFunctions)
 # Class Definitions
 ##############################################################################
 
-class SwitchUnitsHideHUD(OpenMayaMPx.MPxCommand):
+class SwitchUnitsShowHUD(OpenMayaMPx.MPxCommand):
 
     def __init__(self):
         """Constructor"""
@@ -26,4 +27,13 @@ class SwitchUnitsHideHUD(OpenMayaMPx.MPxCommand):
     def doIt(self, args):
         """Command execution"""
         
-        HelperFunctions.destroyHeadsUpDisplay()
+        currentUnits = OpenMaya.MDistance.uiUnit()
+    
+        if OpenMaya.MDistance.kMeters == currentUnits:
+            currentUnits = "Meters"
+        elif OpenMaya.MDistance.kCentimeters == currentUnits:
+            currentUnits = "Centimeters"
+        elif OpenMaya.MDistance.kMillimeters == currentUnits:
+            currentUnits = "Millimeters"
+        
+        HelperFunctions.setHeadsUpDisplay(currentUnits)

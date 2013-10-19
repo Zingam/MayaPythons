@@ -1,10 +1,17 @@
+##############################################################################
+# Module:      SwitchUnitsToMillimeters
+#
+# Description: Defines the command "switchUnitsToMillimeters".
+##############################################################################
+
 # Main Maya imports
+import maya.OpenMaya as OpenMaya
 import maya.OpenMayaMPx as OpenMayaMPx
 import maya.OpenMayaUI as OpenMayaUI
 
 # Import helper functions
-import SwitchUnitsFunctions
-reload(SwitchUnitsFunctions)
+import HelperFunctions
+reload(HelperFunctions)
 
 ##############################################################################
 # Class Definitions
@@ -20,4 +27,4 @@ class SwitchUnitsToMillimeters(OpenMayaMPx.MPxCommand):
     def doIt(self, args):
         """Command execution"""
         
-        SwitchUnitsFunctions.switchUnitsToMillimeters()
+        HelperFunctions.setLinearUnits(OpenMaya.MDistance.kMillimeters)

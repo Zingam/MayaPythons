@@ -1,7 +1,7 @@
 ##############################################################################
 # UnitsSwitcher Plug-in
 #     Software:    Maya 2014
-#     Version:     0.0.0.5
+#     Version:     0.0.0.7
 #     Description: Commands to quickly switch the UI units
 #     Note:        Currently supports metric linear units
 ##############################################################################
@@ -34,7 +34,7 @@ reload(UsCommands)
 
 # Global constants
 cVendorName = "Roccoor Multimedia"
-cPluginVersion = "0.0.0.5"
+cPluginVersion = "0.0.0.7"
 
 # Global variables
 kPluginCommandName_switchUnits = "switchUnits"
@@ -42,6 +42,7 @@ kPluginCommandName_switchUnitsToMeters = "switchUnitsToMeters"
 kPluginCommandName_switchUnitsToCentimeters = "switchUnitsToCentimeters"
 kPluginCommandName_switchUnitsToMillimeters = "switchUnitsToMillimeters"
 kPluginCommandName_switchUnitsHideHUD = "switchUnitsHideHUD"
+kPluginCommandName_switchUnitsShowHUD = "switchUnitsShowHUD"
 
 ##############################################################################
 # Plug-in Initialization - Helper functions
@@ -75,6 +76,11 @@ def commandCreator_switchUnitsHideHUD():
     """Create an instance of the command"""
     
     return OpenMayaMPx.asMPxPtr(UsCommands.SwitchUnitsHideHUD())
+    
+def commandCreator_switchUnitsShowHUD():
+    """Create an instance of the command"""
+    
+    return OpenMayaMPx.asMPxPtr(UsCommands.SwitchUnitsShowHUD())
         
 ##############################################################################
 # Plug-in Initialization
@@ -91,15 +97,25 @@ def initializePlugin(mObject):
         mPlugin.registerCommand(kPluginCommandName_switchUnitsToCentimeters, commandCreator_switchUnitsToCentimeters)
         mPlugin.registerCommand(kPluginCommandName_switchUnitsToMillimeters, commandCreator_switchUnitsToMillimeters)
         mPlugin.registerCommand(kPluginCommandName_switchUnitsHideHUD, commandCreator_switchUnitsHideHUD)
+        mPlugin.registerCommand(kPluginCommandName_switchUnitsShowHUD, commandCreator_switchUnitsShowHUD)
     except:
         sys.stderr.write("Failed to register command: " + kPluginCommandName_switchUnits)
         sys.stderr.write("Failed to register command: " + kPluginCommandName_switchUnitsToMeters)
         sys.stderr.write("Failed to register command: " + kPluginCommandName_switchUnitsToCentimeters)
         sys.stderr.write("Failed to register command: " + kPluginCommandName_switchUnitsToMillimeters)
         sys.stderr.write("Failed to register command: " + kPluginCommandName_switchUnitsHideHUD)
+        sys.stderr.write("Failed to register command: " + kPluginCommandName_switchUnitsShowHUD)
+    
+    # Display the HUD indication on plug-in initialization
+    import maya.cmds
+    maya.cmds.switchUnitsShowHUD()
         
 def uninitializePlugin(mObject):
     """Uninitalizes the plugin when Maya unloads it"""
+    
+    # Hide the HUD indication on plug-in uninitialization
+    import maya.cmds
+    maya.cmds.switchUnitsHideHUD()
     
     mPlugin = OpenMayaMPx.MFnPlugin(mObject)
     
@@ -109,9 +125,11 @@ def uninitializePlugin(mObject):
         mPlugin.deregisterCommand(kPluginCommandName_switchUnitsToCentimeters)
         mPlugin.deregisterCommand(kPluginCommandName_switchUnitsToMillimeters)
         mPlugin.deregisterCommand(kPluginCommandName_switchUnitsHideHUD)
+        mPlugin.deregisterCommand(kPluginCommandName_switchUnitsShowHUD)
     except:
         sys.stderr.write("Failed to unregister command: " + kPluginCommandName_switchUnits)
         sys.stderr.write("Failed to unregister command: " + kPluginCommandName_switchUnitsToMeters)
         sys.stderr.write("Failed to unregister command: " + kPluginCommandName_switchUnitsToCentimeters)
         sys.stderr.write("Failed to unregister command: " + kPluginCommandName_switchUnitsToMillimeters)
         sys.stderr.write("Failed to unregister command: " + kPluginCommandName_switchUnitsHideHUD)
+        sys.stderr.write("Failed to unregister command: " + kPluginCommandName_switchUnitsShowHUD)

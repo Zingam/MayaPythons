@@ -2,6 +2,7 @@
 import maya.OpenMaya as OpenMaya
 import maya.cmds as cmds
 
+import Constants
 
 ##############################################################################
 # Module definitions - constants
@@ -30,9 +31,11 @@ def destroyHeadsUpDisplay():
     if doesHUDExist:
         cmds.headsUpDisplay(headsUpDisplay['Name'], rem=True)
 
+        
 def prepareLabelText():
 
     return headsUpDisplay['linearUnits']
+
     
 def setHeadsUpDisplay(currentUnits):
     """Displays current units on Maya HUD."""
@@ -55,33 +58,37 @@ def setHeadsUpDisplay(currentUnits):
 # Main Functions
 ##############################################################################
 
-#cUIUnits = "UI linear units set: "
+def setLinearUnits(newUnits):
+    """Sets new linear units in Maya's UI..."""
+    pass
+
+    # Save the current grid
+    currentGridSpacing = cmds.grid(query=True, spacing=True)
+    currentGridSize = cmds.grid(query=True, size=True)
+  
+    # Set the new units used in the UI
+    OpenMaya.MDistance.setUIUnit(newUnits)
+    
+    # Restore the grid
+    cmds.grid(spacing=currentGridSpacing, size=currentGridSize)
+    
+    # Prepare the HUD indication
+    currentUnits = "Unknown"
+    
+    # CAUTION: Re-using argument "newUnits"
+    newUnits = OpenMaya.MDistance.uiUnit()
+    
+    if OpenMaya.MDistance.kMeters == newUnits:
+        currentUnits = "Meters"
+    elif OpenMaya.MDistance.kCentimeters == newUnits:
+        currentUnits = "Centimeters"
+    elif OpenMaya.MDistance.kMillimeters == newUnits:
+        currentUnits = "Millimeters"
+        
+    setHeadsUpDisplay(currentUnits)
 
 
 def getCurrentUnits():
+    """Retrives the current units used in Maya's UI"""
     
     return OpenMaya.MDistance.uiUnit()
-    
-                        
-def switchUnitsToMeters():
-
-    cUnits = "Meters"
-    #print(cUIUnits + cUnits)
-    OpenMaya.MDistance.setUIUnit(OpenMaya.MDistance.kMeters)
-    setHeadsUpDisplay("Meters")
-    
-    
-def switchUnitsToCentimeters():
-
-    cUnits = "Centimeters"
-    #print(cUIUnits + cUnits)
-    OpenMaya.MDistance.setUIUnit(OpenMaya.MDistance.kCentimeters)
-    setHeadsUpDisplay(cUnits)
-    
-    
-def switchUnitsToMillimeters():
-
-    cUnits = "Millimeters"
-    #print(cUIUnits + cUnits)
-    OpenMaya.MDistance.setUIUnit(OpenMaya.MDistance.kMillimeters)
-    setHeadsUpDisplay(cUnits)

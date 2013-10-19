@@ -1,10 +1,17 @@
+##############################################################################
+# Module:      SwitchUnitsToCentimeters
+#
+# Description: Defines the command "switchUnitsToCentimeters".
+##############################################################################
+
 # Main Maya imports
+import maya.OpenMaya as OpenMaya
 import maya.OpenMayaMPx as OpenMayaMPx
 import maya.OpenMayaUI as OpenMayaUI
 
 # Import helper functions
-import SwitchUnitsFunctions
-reload(SwitchUnitsFunctions) 
+import HelperFunctions
+reload(HelperFunctions)
 
 class SwitchUnitsToCentimeters(OpenMayaMPx.MPxCommand):
 
@@ -16,4 +23,4 @@ class SwitchUnitsToCentimeters(OpenMayaMPx.MPxCommand):
     def doIt(self, args):
         """Command execution"""
         
-        SwitchUnitsFunctions.switchUnitsToCentimeters()
+        HelperFunctions.setLinearUnits(OpenMaya.MDistance.kCentimeters)

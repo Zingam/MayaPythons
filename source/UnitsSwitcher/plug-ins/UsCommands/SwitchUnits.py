@@ -1,3 +1,10 @@
+##############################################################################
+# Module:      SwitchUnits
+#
+# Description: Defines the command "switchUnits". Has a GUI defined in the
+#              module "SwitchUnitsGUI.py"
+##############################################################################
+
 # Qt - PySide imports
 from shiboken import wrapInstance
 from PySide import QtGui

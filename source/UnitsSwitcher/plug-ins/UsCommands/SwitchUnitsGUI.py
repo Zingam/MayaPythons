@@ -1,20 +1,30 @@
+##############################################################################
+# Module:      SwitchUnitsGUI
+#
+# Description: This module represents the GUI of the command "switchUnits",
+#              defined in "SwitchUnits.py"
+##############################################################################
+
+# PySide imports
 from PySide import QtCore
 from PySide import QtGui
 
 from shiboken import wrapInstance
 
+# Main Maya imports
 import maya.OpenMaya as OpenMaya
 import maya.OpenMayaUI as OpenMayaUI
 
 # Import helper functions
-import SwitchUnitsFunctions
-reload(SwitchUnitsFunctions)
+import HelperFunctions
+reload(HelperFunctions)
 
 
 ##############################################################################
 # Module definitions - constants
 ##############################################################################
 
+# TODO: Change this to units constants dictionary and use it everywhere
 comboBoxItems = {
     'Meters': "Meters",
     'Centimeters': "Centimeters",
@@ -185,23 +195,24 @@ class SwitchUnitsGUI(QtGui.QDialog):
     ##########################################################################
 
     def switchUnits(self):
+        """Switches the current units"""
         
         currentIndex = self.comboBox_SelectUnits.currentIndex()
         currentText = self.comboBox_SelectUnits.currentText()
         
         if "Meters" == currentText:
-            SwitchUnitsFunctions.switchUnitsToMeters()
+            HelperFunctions.setLinearUnits(OpenMaya.MDistance.kMeters)
         elif "Centimeters" == currentText:
-            SwitchUnitsFunctions.switchUnitsToCentimeters()
+            HelperFunctions.setLinearUnits(OpenMaya.MDistance.kCentimeters)
         elif "Millimeters" == currentText:
-            SwitchUnitsFunctions.switchUnitsToMillimeters()
+            HelperFunctions.setLinearUnits(OpenMaya.MDistance.kMillimeters)
     
     
     def setCurrentItemFromMaya(self):
         """Sets the current item of the combo box to the current units)"""
         
+        currentUnits = HelperFunctions.getCurrentUnits()
         index = 0
-        currentUnits = SwitchUnitsFunctions.getCurrentUnits()
         
         if OpenMaya.MDistance.kMeters == currentUnits:
             index = self.comboBox_SelectUnits.findText(comboBoxItems['Meters'])           
