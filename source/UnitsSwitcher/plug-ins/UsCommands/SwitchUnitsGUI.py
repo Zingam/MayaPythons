@@ -5,6 +5,7 @@
 #              defined in "SwitchUnits.py"
 ##############################################################################
 
+
 # PySide imports
 from PySide import QtCore
 from PySide import QtGui
@@ -54,7 +55,8 @@ class SwitchUnitsGUI(QtGui.QDialog):
         
         self.createUsDialog()
         self.setCurrentItemFromMaya()
-    
+
+        
     ##########################################################################
     # Class - GUI creation functions
     ##########################################################################

@@ -4,6 +4,7 @@
 # Description: Defines the command "switchUnitsHideHUD".
 ##############################################################################
 
+
 # Main Maya imports
 import maya.OpenMayaMPx as OpenMayaMPx
 import maya.OpenMayaUI as OpenMayaUI
@@ -11,6 +12,7 @@ import maya.OpenMayaUI as OpenMayaUI
 # Import helper functions
 import HelperFunctions
 reload(HelperFunctions)
+
 
 ##############################################################################
 # Class Definitions
@@ -22,6 +24,7 @@ class SwitchUnitsHideHUD(OpenMayaMPx.MPxCommand):
         """Constructor"""
         
         OpenMayaMPx.MPxCommand.__init__(self)
+        
         
     def doIt(self, args):
         """Command execution"""

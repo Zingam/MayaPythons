@@ -1,8 +1,16 @@
+##############################################################################
+# Module:      HelperFunctions
+#
+# Description: Functions that switch Maya's UI units
+##############################################################################
+
+
 # Main Maya imports
 import maya.OpenMaya as OpenMaya
 import maya.cmds as cmds
 
 import Constants
+
 
 ##############################################################################
 # Module definitions - constants

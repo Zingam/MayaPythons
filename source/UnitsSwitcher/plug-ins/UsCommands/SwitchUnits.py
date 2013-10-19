@@ -5,6 +5,7 @@
 #              module "SwitchUnitsGUI.py"
 ##############################################################################
 
+
 # Qt - PySide imports
 from shiboken import wrapInstance
 from PySide import QtGui
@@ -16,6 +17,7 @@ import maya.OpenMayaUI as OpenMayaUI
 # Import custom GUI
 import SwitchUnitsGUI
 reload(SwitchUnitsGUI)
+
 
 ##############################################################################
 # Class Definitions
