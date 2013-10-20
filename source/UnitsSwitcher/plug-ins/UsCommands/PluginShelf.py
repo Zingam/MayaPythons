@@ -8,6 +8,7 @@
 #              http://download.autodesk.com/us/maya/2010help/API/move_tool_8py-example.html
 #              http://www.creativecrash.com/forums/python/topics/plug-in-development-ui-cleanup-problem-when-maya-exits--2            
 #              http://download.autodesk.com/global/docs/maya2014/en_us/PyMel/generated/functions/pymel.core.windows/pymel.core.windows.shelfButton.html#pymel.core.windows.shelfButton
+#              http://etoia.free.fr/?p=1771
 ##############################################################################
 
 # Code from: http://forums.cgsociety.org/showthread.php?t=1091198
@@ -39,6 +40,7 @@ def createShelf():
             cmds.deleteUI(buttons, control=True)
     else:
         newShelf = mel.eval('addNewShelfTab %s' % Constants.ShelfName)
+        #maya.mel.eval('$scriptsShelf = `shelfLayout -cellWidth 33 -cellHeight 33 -p $gShelfTopLevel scriptsShelf`;')
         
     cmds.setParent(newShelf)
     
@@ -88,8 +90,9 @@ def removeShelf():
     if shelf:
         mel.eval('deleteShelfTab %s' % Constants.ShelfName)
         
-        # Get the main shelf from MEL's global variable: $gShelfTopLevel
-        gShelfTopLevel = mel.eval('$tmpVar=$gShelfTopLevel')
+        ## Declare the $gShelfTopLevel variable as a python variable
+        ## The $gShelfTopLevel MEL variable is the Maya default variable for the shelves bar UI
+        gShelfTopLevel = mel.eval('$tempVar=$gShelfTopLevel')
         cmds.saveAllShelves(gShelfTopLevel)
     else:
         return
