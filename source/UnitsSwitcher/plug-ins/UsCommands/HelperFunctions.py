@@ -11,6 +11,7 @@ import inspect
 import maya.OpenMaya as OpenMaya
 import maya.cmds as cmds
 
+# This Plug-in's imports
 import Constants
 reload(Constants)
 

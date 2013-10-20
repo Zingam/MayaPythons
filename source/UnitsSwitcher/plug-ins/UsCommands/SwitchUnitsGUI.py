@@ -15,10 +15,9 @@ from shiboken import wrapInstance
 import maya.OpenMaya as OpenMaya
 import maya.OpenMayaUI as OpenMayaUI
 
-# Import helper functions
+# This Plug-in's imports
 import HelperFunctions
 reload(HelperFunctions)
-
 import Constants
 reload(Constants)
 

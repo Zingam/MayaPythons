@@ -1,7 +1,7 @@
 ##############################################################################
 # UnitsSwitcher Plug-in
 #     Software:    Maya 2014
-#     Version:     0.0.0.7
+#     Version:     1.0.0.7
 #     Description: Commands to quickly switch the UI units
 #     Note:        Currently supports metric linear units
 ##############################################################################
@@ -17,6 +17,8 @@ import maya.OpenMayaMPx as OpenMayaMPx
 # Import Plug-in's Commands
 import UsCommands
 reload(UsCommands)
+import UsCommands.PluginShelf as PluginShelf
+reload(PluginShelf)
 
 
 ##############################################################################
@@ -25,7 +27,7 @@ reload(UsCommands)
 
 # Global constants
 cVendorName = "Roccoor Multimedia"
-cPluginVersion = "0.0.0.7"
+cPluginVersion = "1.0.0.7"
 
 # Global variables
 kPluginCommandName_switchUnits = "switchUnits"
@@ -103,6 +105,7 @@ def initializePlugin(mObject):
     # Display the HUD indication on plug-in initialization
     import maya.cmds
     maya.cmds.switchUnitsShowHUD()
+    UsCommands.PluginShelf.createShelf()
 
     
 def uninitializePlugin(mObject):
@@ -111,6 +114,7 @@ def uninitializePlugin(mObject):
     # Hide the HUD indication on plug-in uninitialization
     import maya.cmds
     maya.cmds.switchUnitsHideHUD()
+    UsCommands.PluginShelf.removeShelf()
     
     mPlugin = OpenMayaMPx.MFnPlugin(mObject)
     

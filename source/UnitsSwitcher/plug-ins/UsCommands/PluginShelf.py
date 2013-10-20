@@ -11,26 +11,85 @@
 ##############################################################################
 
 # Code from: http://forums.cgsociety.org/showthread.php?t=1091198
-def createMyShelf():
-	shelfName = 'My_Shelf'
-	test = cmds.shelfLayout(shelfName, ex=True)
-	if test:
-		# If the shelf already exists, clear the contents and re-add the buttons.
-		newShelf = shelfName
-		buttons = cmds.shelfLayout(newShelf, query=True, childArray=True)
-		cmds.deleteUI(buttons, control=True)	   
-	else:
-		newShelf = mel.eval('addNewShelfTab %s' % shelfName)	   
-	cmds.setParent(newShelf)
-	# add buttons here
+
+# Python imports
+import maya.cmds as cmds
+import maya.mel as mel
+
+# Maya imports
+import maya.cmds as cmds
+import maya.mel as mel
+
+# This Plug-in's imports
+import Constants
+reload(Constants)
+
+
+def createShelf():
+    """Create a shelf with buttons for the commands of the plug-in"""
     
+    shelf = cmds.shelfLayout(Constants.ShelfName, ex=True)
     
+    if shelf:
+        # If the shelf already exists, clear the contents
+        # and re-add thebuttons.
+        newShelf = Constants.ShelfName
+        buttons = cmds.shelfLayout(newShelf, query=True, childArray=True)
+        if buttons:
+            cmds.deleteUI(buttons, control=True)
+    else:
+        newShelf = mel.eval('addNewShelfTab %s' % Constants.ShelfName)
+        
+    cmds.setParent(newShelf)
+    
+    # Shelf Button - Show GUI dialog to select the UI units
+    cmds.shelfButton(label=Constants.ShelfButton_GUI['label'],
+                     image=Constants.ShelfButton_GUI['image'],
+                     annotation=Constants.ShelfButton_GUI['annotation'],
+                     command=Constants.ShelfButton_GUI['command'])
+                     
+    
+    # Shelf Button - Show HUD indicator
+    cmds.shelfButton(label=Constants.ShelfButton_ShowHUD['label'],
+                     image=Constants.ShelfButton_ShowHUD['image'],
+                     annotation=Constants.ShelfButton_ShowHUD['annotation'],
+                     command=Constants.ShelfButton_ShowHUD['command'])
+                     
+    # Shelf Button - Hide HUD indicator
+    cmds.shelfButton(label=Constants.ShelfButton_HideHUD['label'],
+                     image=Constants.ShelfButton_HideHUD['image'],
+                     annotation=Constants.ShelfButton_HideHUD['annotation'],
+                     command=Constants.ShelfButton_HideHUD['command'])
+                     
+    # Shelf Button - Switch linear units to meters
+    cmds.shelfButton(label=Constants.ShelfButton_Meters['label'],
+                     image=Constants.ShelfButton_Meters['image'],
+                     annotation=Constants.ShelfButton_Meters['annotation'],
+                     command=Constants.ShelfButton_Meters['command'])
+
+    # Shelf Button - Switch linear units to centimeters
+    cmds.shelfButton(label=Constants.ShelfButton_Centimeters['label'],
+                     image=Constants.ShelfButton_Centimeters['image'],
+                     annotation=Constants.ShelfButton_Centimeters['annotation'],
+                     command=Constants.ShelfButton_Centimeters['command'])
+
+    # Shelf Button - Switch linear units to millimeters
+    cmds.shelfButton(label=Constants.ShelfButton_Millimeters['label'],
+                     image=Constants.ShelfButton_Millimeters['image'],
+                     annotation=Constants.ShelfButton_Millimeters['annotation'],
+                     command=Constants.ShelfButton_Millimeters['command'])
+                     
+  
 def removeShelf():
-	shelfName = 'My_Shelf'
-	test = cmds.shelfLayout(shelfName, ex=True)
-	if test:
-		mel.eval('deleteShelfTab %s' % shelfName)
-		gShelfTopLevel = mel.eval('$tmpVar=$gShelfTopLevel')
-		cmds.saveAllShelves(gShelfTopLevel)
-	else:
-		return
+    """Remove the shelf"""
+    
+    shelf = cmds.shelfLayout(Constants.ShelfName, ex=True)
+    
+    if shelf:
+        mel.eval('deleteShelfTab %s' % Constants.ShelfName)
+        
+        # Get the main shelf from MEL's global variable: $gShelfTopLevel
+        gShelfTopLevel = mel.eval('$tmpVar=$gShelfTopLevel')
+        cmds.saveAllShelves(gShelfTopLevel)
+    else:
+        return

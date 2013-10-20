@@ -8,7 +8,7 @@
 import maya.OpenMayaMPx as OpenMayaMPx
 import maya.OpenMayaUI as OpenMayaUI
 
-# Import helper functions
+# This Plug-in's imports
 import HelperFunctions
 reload(HelperFunctions)
 

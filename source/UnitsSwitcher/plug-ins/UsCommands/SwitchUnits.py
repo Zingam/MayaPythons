@@ -13,6 +13,7 @@ from PySide import QtGui
 import maya.OpenMayaMPx as OpenMayaMPx
 import maya.OpenMayaUI as OpenMayaUI
 
+# This Plug-in's imports
 # Import custom GUI
 import SwitchUnitsGUI
 reload(SwitchUnitsGUI)
